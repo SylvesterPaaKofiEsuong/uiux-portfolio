@@ -5,10 +5,12 @@ import { motion, useInView } from "framer-motion";
 export const TextHoverEffect = ({
   text,
   duration,
+  className = "",
 }: {
   text: string;
   duration?: number;
   automatic?: boolean;
+  className?: string;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const inView = useInView(svgRef as React.RefObject<Element>, { once: false, margin: "-20% 0px" });
@@ -42,12 +44,12 @@ export const TextHoverEffect = ({
       ref={svgRef}
       width="100%"
       height="100%"
-      viewBox="0 0 300 100"
+      viewBox="0 0 700 100"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => inView && setHovered(true)}
       onMouseLeave={() => inView && setHovered(false)}
       onMouseMove={(e) => inView && setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none"
+      className={`select-none ${className}`}
     >
       <defs>
         <linearGradient
@@ -97,24 +99,15 @@ export const TextHoverEffect = ({
           />
         </mask>
       </defs>
-      <text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-3xl font-bold dark:stroke-neutral-800"
-        style={{ opacity: hovered ? 0.7 : 0 }}
-      >
-        {text}
-      </text>
+      {/* Removed the first <text> element to prevent duplicate on hover */}
       <motion.text
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-8xl font-bold dark:stroke-neutral-600"
+        className="fill-transparent stroke-neutral-200 font-[helvetica] font-bold dark:stroke-neutral-600"
+        style={{ fontSize: "clamp(5rem, 8vw, 9rem)", minWidth: 0 }}
         key={drawKey}
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{ strokeDashoffset: 0, strokeDasharray: 1000 }}
@@ -133,7 +126,8 @@ export const TextHoverEffect = ({
         stroke="url(#textGradient)"
         strokeWidth="0.3"
         mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-9xl font-bold opacity-90"
+        className="fill-transparent font-[helvetica] font-bold opacity-90"
+        style={{ fontSize: "clamp(5rem, 8vw, 9rem)", minWidth: 0 }}
       >
         {text}
       </text>

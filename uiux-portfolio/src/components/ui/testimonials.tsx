@@ -23,6 +23,10 @@ const testimonials = [
   },
 ];
 
+const QuoteIcon = () => (
+  <svg className="w-8 h-8 text-neutral-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 17a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4H7zm10 0a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4h-2z" /></svg>
+);
+
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const testimonial = testimonials[index];
@@ -31,8 +35,8 @@ export default function Testimonials() {
   const prev = () => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <div className="relative w-full max-w-xl mx-auto py-12 flex flex-col items-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Testimonials</h2>
+    <div className="relative w-full max-w-3xl mx-auto py-16 flex flex-col items-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-neutral-900 dark:text-neutral-100 tracking-tight">What Clients Say</h2>
       <div className="relative w-full">
         <AnimatePresence mode="wait">
           <motion.div
@@ -40,33 +44,36 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="bg-white dark:bg-neutral-900 rounded-xl shadow-lg px-8 py-10 flex flex-col items-center text-center min-h-[260px]"
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-md px-8 py-10 flex flex-col md:flex-row items-center md:items-start text-left min-h-[220px] md:min-h-[180px]"
           >
             <img
               src={testimonial.avatar}
               alt={testimonial.name}
-              className="w-16 h-16 rounded-full mb-4 object-cover border-2 border-blue-400"
+              className="w-16 h-16 rounded-full mb-4 md:mb-0 md:mr-8 object-cover border border-neutral-300 dark:border-neutral-700 grayscale"
             />
-            <p className="text-lg md:text-xl text-neutral-700 dark:text-neutral-200 mb-6">“{testimonial.text}”</p>
-            <div className="font-semibold text-blue-600 dark:text-blue-400">{testimonial.name}</div>
-            <div className="text-sm text-neutral-500 dark:text-neutral-400">{testimonial.role}</div>
+            <div className="flex-1 flex flex-col items-center md:items-start">
+              <QuoteIcon />
+              <p className="text-lg md:text-xl text-neutral-800 dark:text-neutral-200 mb-4 font-medium leading-relaxed">{`"${testimonial.text}"`}</p>
+              <div className="font-semibold text-neutral-900 dark:text-neutral-100">{testimonial.name}</div>
+              <div className="text-sm text-neutral-500 dark:text-neutral-400">{testimonial.role}</div>
+            </div>
           </motion.div>
         </AnimatePresence>
         {/* Navigation Arrows */}
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 rounded-full shadow p-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full shadow p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition"
           aria-label="Previous testimonial"
         >
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+          <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 17l-5-5 5-5" /></svg>
         </button>
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 rounded-full shadow p-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full shadow p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition"
           aria-label="Next testimonial"
         >
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+          <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 7l5 5-5 5" /></svg>
         </button>
       </div>
       {/* Dots */}
@@ -75,7 +82,7 @@ export default function Testimonials() {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full transition ${i === index ? "bg-blue-500" : "bg-neutral-300 dark:bg-neutral-700"}`}
+            className={`w-2.5 h-2.5 rounded-full transition border border-neutral-300 dark:border-neutral-700 ${i === index ? "bg-neutral-800 dark:bg-neutral-200" : "bg-neutral-200 dark:bg-neutral-700"}`}
             aria-label={`Go to testimonial ${i + 1}`}
           />
         ))}
