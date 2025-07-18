@@ -115,7 +115,7 @@ export const projectData = [
         </p>
         <div className="flex flex-wrap gap-4">
           <img src="/Food_Ordering_App_1.png" alt="Food Ordering App 1" className="h-20 w-32 rounded-lg object-cover" />
-          <img src="/casual .png" alt="Casual" className="h-20 w-32 rounded-lg object-cover" />
+          <img src="/casual.png" alt="Casual" className="h-20 w-32 rounded-lg object-cover" />
         </div>
       </div>
     ),

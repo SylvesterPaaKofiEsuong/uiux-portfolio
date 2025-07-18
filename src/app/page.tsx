@@ -120,7 +120,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-md mx-auto px-4">
           <div className="relative flex flex-col items-center gap-4 rounded-2xl shadow-2xl p-8 border border-neutral-700 bg-gradient-to-br from-white/10 to-neutral-900/80 backdrop-blur-md">
             {/* Avatar/Profile Image */}
-            <img src="../casual .png" alt="Nana Agyeman-Badu" className="w-20 h-20 rounded-full border-4 border-white/30 shadow-lg mb-2 object-cover bg-neutral-800" />
+            <img src="../casual.png" alt="Nana Agyeman-Badu" className="w-20 h-20 rounded-full border-4 border-white/30 shadow-lg mb-2 object-cover bg-neutral-800" />
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">Let’s Connect & Collaborate</h2>
             <p className="text-neutral-300 text-center text-base mb-1">I love working with creative teams and ambitious brands. Let’s build something amazing together!</p>
             <div className="text-neutral-400 text-xs mb-2">Accra, Ghana</div>
