@@ -22,7 +22,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: "easeOut" as const } },
 };
 
 export default function Home() {
@@ -47,6 +47,7 @@ export default function Home() {
           animate="show"
           className="relative z-10 flex flex-col items-center justify-center w-full px-4 text-center"
         >
+          {/* Place all child elements here, as nested JSX, not as a 'children' prop */}
           <motion.div variants={itemVariants}>
             <Cover>
               <h1 className="text-2xl md:text-2xl font-bold text-white mb-4">
